@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header nav {
+  display: flex;
+  gap: 16px;
+}
+
+.main {
+  padding: 24px;
+}
+
+.auth-page {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 0 16px;
+}
+
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
