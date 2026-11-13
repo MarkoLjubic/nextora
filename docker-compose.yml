@@ -1,0 +1,26 @@
+# Lokalna infrastruktura za Nextora razvoj.
+#   docker compose up -d      pokreće bazu
+#   docker compose down       gasi je (podaci ostaju u volume-u)
+#   docker compose down -v    briše i podatke
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: nextora-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nextora
+      POSTGRES_USER: nextora
+      POSTGRES_PASSWORD: nextora
+    # 5432 na hostu je zauzet drugim projektom, pa Nextora baza ide na 5433.
+    ports:
+      - '5433:5432'
+    volumes:
+      - nextora-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U nextora -d nextora']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  nextora-pgdata:
